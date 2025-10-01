@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\notify.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Notify</h1>
+<p><em>Muestra una notificación flotante</em></p>
+<pre><code class="language-javascript">// notify sin autoclose
+$.UifNotify(&#39;show&#39;, { type: &#39;info&#39;, message: &#39;Iniciando Proceso&#39;, autoclose: false });
+
+// notify con autoclose
+$.UifNotify(&#39;update&#39;, { type: &#39;success&#39;, message: &#39;Proceso Finalizado&#39;, autoclose: true });
+</code></pre>
+<h3>Métodos</h3>
+<h4>show</h4>
+<p><em>options</em>
+Type: <code>object</code></p>
+<p>Muestra el notify. Ver opciones de configuración más abajo.</p>
+<h4>update</h4>
+<p><em>options</em>
+Type: <code>object</code>
+Actualiza el notify. Ver opciones de configuración más abajo.</p>
+<h4>close</h4>
+<p>Cierra el notify</p>
+<h4>Parámetros del objeto options</h4>
+<h4>type</h4>
+<p>Type: <code>string</code></p>
+<p><code>info | success | warning | danger</code> </p>
+<p>El estilo del notify.</p>
+<h4>message</h4>
+<p>Type: <code>string</code></p>
+<p>El texto del notify.</p>
+<h4>[autoclose]</h4>
+<p>Type: <code>boolean</code></p>
+<p>Especifica si el notify se cerrará automáticamente luego de 5 segundos.</p>
+<h4>[closeCallBack]</h4>
+<p>Type: <code>function</code></p>
+<p>Se ejecuta cuando se cierra la notificacion.</p>
+<pre><code class="language-javascript">//Se ejecuta si se cierra la notificacion automaticamente o se cierra por el usuario.
+var alert=function(){
+    alert(&#39;La notificacion se cerro&#39;);
+}
+$.UifNotify(&#39;update&#39;, { type: &#39;success&#39;, message: &#39;Proceso Finalizado&#39;, autoclose: true,closeCallBack:alert });
+</code></pre>
+
+  </main>
+</body>
+</html>

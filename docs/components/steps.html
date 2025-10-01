@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\steps.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Steps</h1>
+<p><em>Permite organizar contenidos mediante steps</em></p>
+<pre><code class="language-html">
+&lt;div id=&quot;steps&quot;&gt;
+    &lt;div data-title=&quot;Primer step&quot;&gt;
+        &lt;!--contenido del step --&gt;
+    &lt;/div&gt;
+    &lt;div data-title=&quot;Segundo step&quot;&gt;
+        &lt;!--contenido del step --&gt;
+    &lt;/div&gt;
+    &lt;div data-title=&quot;Tercer step&quot;&gt;
+        &lt;!--contenido del step --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">const steps = app.steps({
+  container: &#39;#steps&#39;,
+  onStep: function(event, currentIndex, newIndex){
+    return true;
+  }
+});
+</code></pre>
+<h3>Parámetros de inicialización</h3>
+<h4>container</h4>
+<p>Type: <code>string</code> </p>
+<p>Selector que apunta al container de los steps. Todos los divs que sen encuentren
+dentro de este contenedor se convertiran en los steps.</p>
+<h4>onStep</h4>
+<p>Type: <code>function</code> </p>
+<p>Callback que se ejecutará en cada cambio de step. 
+La función debe retornar <code>true</code> para que el componente pase al siguiente step</p>
+
+  </main>
+</body>
+</html>

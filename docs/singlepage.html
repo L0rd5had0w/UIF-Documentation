@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>singlepage.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Single Page</h1>
+<p><em>Simplificar el manteniendo de la UI, organizando la lógica de manipulación de eventos de una manera clara y simple, cumpliendo un ciclo de vida del componente.</em></p>
+<pre><code class="language-javascript">class Person extends Uif2.Page {
+    constructor(Person) {
+        super();
+        this.person = Person;
+        //do something
+    }
+    //Metodo de inicializacion de componentes, ajax, etc.
+    getInitialState() {
+        $(&#39;#select&#39;).UifSelect({source: path});
+        $(&#39;#input&#39;).UifAutoComplete({ 
+            source: url, 
+            displaykey:&quot;Empresa&quot;, 
+            minLenght: 3, 
+            queryParameter: &#39;query&#39;, 
+            displayRecords:5 
+        });
+        this.getAllData();
+    }
+    //Metodo de asignacion de eventos de los diferentes controles.
+    bindEvents() {
+        $(&#39;#button&#39;).on(&#39;click&#39;, this.searchPerson);
+    }
+
+    searchPerson() {
+        return this.person;
+    }
+    getDataPerson() {
+        //do something
+    }
+
+    static getPerson() {
+        return { Name : &#39;Gabriel&#39;};
+    }
+}
+
+//Inicializacion 
+var personClass = new Person();
+//Uso de funciones de la clase
+var person = personClass.searchPerson();
+//Uso de funciones estaticas.
+var personStatic = Person.getPerson();
+</code></pre>
+
+  </main>
+</body>
+</html>

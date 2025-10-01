@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\modal.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Modal</h1>
+<p><em>El componente permite mostrar un modal.</em></p>
+<pre><code class="language-html">&lt;div class=&quot;uif-modal&quot; id=&quot;modalDialog&quot; data-size=&quot;lg&quot;&gt;
+    &lt;div class=&quot;uif-modalheader&quot;&gt;       
+    &lt;/div&gt;
+
+    &lt;div class=&quot;uif-modalbody&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;uif-modalbuttons&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">//parametro 1 : metodo
+//parametro 2 : titulo del modal
+//parametro 3(opcional) : enableClose Default : true
+$(&#39;#modalDialog&#39;).UifModal(&#39;showLocal&#39;, &#39;Título del modal&#39;);
+</code></pre>
+<h3>PArametros</h3>
+<h4>size</h4>
+<pre><code class="language-html">&lt;div class=&quot;uif-modal&quot; id=&quot;modalDialog&quot; data-size=&quot;lg&quot;&gt;
+    &lt;div class=&quot;uif-modalheader&quot;&gt;       
+    &lt;/div&gt;
+
+    &lt;div class=&quot;uif-modalbody&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;uif-modalbuttons&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Establece el ancho del modal</p>
+<p>Type: <code>string</code> </p>
+<p>Tamaños: <code>xl | lg | md | sm</code> </p>
+<p>Default: <code>lg</code> </p>
+<h3>Métodos</h3>
+<h4>showLocal</h4>
+<p><em>title</em></p>
+<p>Type: <code>string</code> </p>
+<p>Muestra el modal</p>
+<pre><code class="language-javascript">//parametro 1 : metodo
+//parametro 2 : titulo del modal
+//parametro 3(opcional) : enableClose Default : true
+$(&#39;#modalDialog&#39;).UifModal(&#39;show&#39;, &#39;Título del modal&#39;);
+</code></pre>
+<h4>show</h4>
+<p><em>url</em></p>
+<p>Type: <code>string</code> </p>
+<p><em>title</em></p>
+<p>Type: <code>string</code> </p>
+<p>Muestra el modal con el contenido obtenido desde la <code>url</code></p>
+<pre><code class="language-javascript">//parametro 1 : metodo
+//parametro 2 : url
+//parametro 3 : titulo del modal
+//parametro 4(opcional) : enableClose Default : true
+$(&#39;#modalDialog&#39;).UifModal(&#39;show&#39;, &#39;path/to/modal&#39;, &#39;Título del modal&#39;);
+</code></pre>
+<h4>changeTitle</h4>
+<p><em>title</em></p>
+<p>Type: <code>string</code> </p>
+<p>Cambia el titulo del modal <code>url</code></p>
+<pre><code class="language-javascript">$(&#39;#modalDialog&#39;).UifModal(&#39;changeTitle&#39;, &#39;Nuevo Titulo&#39;);
+</code></pre>
+<h4>hide</h4>
+<p>Oculta el modal</p>
+<pre><code class="language-javascript">$(&#39;#modalDialog&#39;).UifModal(&#39;hide&#39;);
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>modal.opened</li>
+<li>closed.modal</li>
+</ul>
+<pre><code class="language-javascript">$(&#39;#modal&#39;).on(&#39;modal.opened&#39;, function () {
+    //
+});
+
+$(&#39;#modal&#39;).on(&#39;closed.modal&#39;, function () {
+    //
+});
+
+
+
+</code></pre>
+
+  </main>
+</body>
+</html>

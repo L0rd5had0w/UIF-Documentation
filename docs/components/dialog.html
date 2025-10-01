@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\dialog.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Dialog</h1>
+<p><em>Muestra una ventana de diálogo o popup con un mensaje</em></p>
+<pre><code class="language-javascript">// confirm popup
+$.UifDialog(&#39;confirm&#39;, { 
+    title: &#39;titulo del dialog&#39;,
+    message: &#39;cuerpo del dialog&#39;,
+    class: &#39;modal-sm&#39; // opcional  parametros modal-sm || modal-lg
+    }, function (result) {
+        console.log(result)
+});
+
+// alert popup
+$.UifDialog(&#39;alert&#39;, { 
+    message: &#39;cuerpo del dialog&#39;,
+    class: &#39;modal-sm&#39; // opcional  parametros modal-sm || modal-lg
+    }, function (result) {
+        console.log(result)
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

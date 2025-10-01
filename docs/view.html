@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>view.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>View</h1>
+<p><em>Objeto que sirve para crear una vista en base a un html.</em></p>
+<pre><code class="language-javascript">//inicialización
+const App = new Uif2.App();
+const view = App.view();
+
+view.el = &#39;.form&#39;;
+
+view.events = {
+  &#39;click .btn-bloquear&#39;: &#39;disableForm&#39;,
+  &#39;click .btn-desbloquear&#39;: &#39;enableForm&#39;      
+}
+
+view.init = function(done) {
+  done();
+}
+
+view.render();
+</code></pre>
+<h3>Propiedades</h3>
+<h4>el</h4>
+<p>Type: <code>string</code></p>
+<p>Es el selector que apunta al contenedor de la vista.</p>
+<h4>[events]</h4>
+<p>Type: <code>object</code></p>
+<p>Objeto que declara eventos y sus callbacks asociados. 
+Los callbacks deben ser metodos de la misma vista</p>
+<pre><code class="language-javascript">const view = App.view();
+
+view.el = &#39;.form&#39;;
+
+view.events = {
+  &#39;click .btn-submit&#39;: &#39;submitForm&#39;  
+}
+
+view.init = function(done) {
+  done();
+}
+
+view.submitForm = function() {
+}
+
+view.render();
+</code></pre>
+<h4>init</h4>
+<p>Type: <code>function</code></p>
+<p>Es la function de inicialización. La vista al ejecutar el render, primero realizará la inicialización mostrando un &#39;loader&#39;.
+Para dar por concluida la inicialización se debe llamar al callback <code>done()</code>. <strong>El loader no se oculta hasta que no se ejecute el done()</strong></p>
+<p>En esta función se podran declarar variables como asi también hacer todos los request asincrónicos que sean necesarios.</p>
+<pre><code class="language-javascript">const view = App.view();
+
+view.el = &#39;.form&#39;;
+
+view.init = function(done) {
+  this.company = &#39;&#39;;
+  this.id = 0;
+  this.date = new Date();
+  this.user = {};
+  
+  Promise.all([promise1,promise2]).then(function(responses){
+    done();
+  });
+}
+
+view.render();
+</code></pre>
+<h3>Métodos</h3>
+<h4>render()</h4>
+<p>Ejecuta la inicialización de la vista y hace el bind de los eventos (en caso de que 
+se hayan definido).</p>
+<pre><code class="language-javascript">const view = App.view();
+
+view.el = &#39;.form&#39;;
+
+view.init = function(done) {
+  done();
+}
+
+view.render();
+</code></pre>
+<h4>disableFormElements(enable)</h4>
+<p><em>enable</em></p>
+<p>Type: <code>boolean</code></p>
+<p>Habilita o desabilita todos los inputs dentro de la vista. 
+Esta es una función interna, por eso debe ser invocada desde un método de la view</p>
+<pre><code class="language-javascript">const view = App.view();
+
+view.el = &#39;.form&#39;;
+
+view.events = {
+  &#39;click .btn-bloquear&#39;: &#39;disableForm&#39;  
+}
+
+view.init = function(done) {
+  done();
+}
+
+view.disableForm = function() {
+  this.disableFormElements(true);
+}
+
+view.render();
+</code></pre>
+<h4>postData(url, data)</h4>
+<p><em>url</em>
+Type: <code>string</code></p>
+<p><em>data</em>
+Type: <code>object</code></p>
+<p>Ejecuta un POST sobre la <code>url</code> y retorna una promesa. Automáticamente mostrará un loading para evitar que el usuario modifique el formulario.</p>
+<pre><code class="language-javascript">view.el = &#39;.form&#39;;
+
+view.events = {
+  &#39;click .btn-submit&#39;: &#39;postForm&#39;
+}
+
+view.postForm = function() {
+  var post = this.postData(url, data);
+  post.then(function(response){
+    console.log(response);
+  })
+  post.catch(function(err){
+    console.err(err);
+  })
+}
+
+view.render
+</code></pre>
+
+  </main>
+</body>
+</html>

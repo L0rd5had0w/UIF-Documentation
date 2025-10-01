@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\alert.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Alert</h1>
+<p><em>El componente permite mostrar un mensaje dentro de un determinado elemento</em></p>
+<pre><code class="language-html">&lt;!--primero se debe crear el elemento en donde se mostrará el mensaje--&gt;
+&lt;div class=&quot;uif-alert&quot; id=&quot;alert&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">//luego se puede invocar el método show
+$(&quot;#alert&quot;).UifAlert(&#39;show&#39;, &#39;Bienvenido a UIF2 Touch!&#39;, &quot;warning&quot;);
+</code></pre>
+<h3>Métodos</h3>
+<h4>show (message, type)</h4>
+<p><em>message</em></p>
+<p>Type: <code>string</code></p>
+<p><em>type</em></p>
+<p>Type: <code>string</code></p>
+<p><code>info | success | warning | danger</code></p>
+<p>Muestra el alert con el formato especificado</p>
+<pre><code class="language-javascript">$(&quot;#alert&quot;).UifAlert(&#39;show&#39;, &#39;Bienvenido a UIF2 Touch!&#39;, &quot;success&quot;);
+</code></pre>
+<h4>hide ()</h4>
+<p>Oculta el mensaje</p>
+<pre><code class="language-javascript">$(&quot;#alert&quot;).UifAlert(&#39;hide&#39;);
+</code></pre>
+<h4>appendMessage (message, cleanPreviousMessages)</h4>
+<p>Agrega un mensaje a mostrarse en el Alert.
+Los mensajes se mostraran en una lista.</p>
+<p><em>message</em></p>
+<p>Type: <code>string</code></p>
+<p><em>cleanPreviousMessages</em></p>
+<p>Type: <code>boolean</code>
+Borrar los mensajes previos</p>
+<pre><code class="language-javascript">$(&quot;#alert&quot;).UifAlert(&#39;appendMessage&#39;, &#39;Mensaje de ejemplo&#39;);
+</code></pre>
+<h4>appendMessages (message, cleanPreviousMessages)</h4>
+<p>Muestra los mensajes en el Alert.
+Los mensajes se mostraran en una lista.</p>
+<p><em>message</em></p>
+<p>Type: <code>string[]</code></p>
+<p><em>cleanPreviousMessages</em></p>
+<p>Type: <code>boolean</code>
+Borrar los mensajes previos</p>
+<pre><code class="language-javascript">$(&quot;#alert&quot;).UifAlert(&#39;appendMessage&#39;, &#39;Mensaje de ejemplo&#39;);
+</code></pre>
+
+  </main>
+</body>
+</html>

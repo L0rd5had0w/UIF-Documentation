@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\crudservices.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Crud Services</h1>
+<p><em>Es un servicio REST,  orientado a minimizar los tiempos de desarrollo y mantenimiento asociados a operaciones de CRUD.</em></p>
+<p><em>Se lo considera un servicio de repositorio autónomo, distribuible y escalable,  el cual permite realizar operaciones de alta, consulta, actualización y borrado de las entidades (Business Objects) utilizadas por SISE</em></p>
+<h2>Beneficios</h2>
+<ul>
+<li>Simplificación del Flujo de Desarrollo de la app.</li>
+<li>Previene el overhead de información entre cliente y servidor.</li>
+<li>Reutilización de código tanto en ambientes web como mobile.</li>
+<li>Cacheo independiente a nivel frontend y backend.</li>
+<li>Posibilidad de implementar Web Sockets por HTTP.</li>
+<li>Puede ser accedido tanto en entornos web como mobiles.</li>
+</ul>
+<h3>Uso</h3>
+<p><em>Primero se debe crear el siguiente elemento, este contiene la conexion a el servicio que nos conecta con la base de datos.</em></p>
+<pre><code class="language-javascript">               
+var crudServices = new CrudServices({ endpoint: &#39;http://corprest01/CrudServicesApi/api/&#39; });
+</code></pre>
+<h3>Operadores Logicos</h3>
+<pre><code class="language-javascript">LogicalOperator.AND
+
+LogicalOperator.OR
+</code></pre>
+<h3>Condiciones</h3>
+<pre><code class="language-javascript">ComparationOperator.Equal
+
+ComparationOperator.Distinct
+
+ComparationOperator.GreaterThan
+
+ComparationOperator.GreaterEqual
+
+ComparationOperator.LessThan
+
+ComparationOperator.LessEqual
+
+ComparationOperator.isNull
+
+ComparationOperator.IsNotNull
+</code></pre>
+<h3>Tipo de Mutacion</h3>
+<pre><code class="language-javascript">MutationType.POST  //Crear entidad
+
+MutationType.PUT  //Actualizar entidad
+
+MutationType.DELETE  //Eliminar entidad
+</code></pre>
+<h3>Métodos</h3>
+<h4>createExpression</h4>
+<pre><code class="language-javascript">/*Esta expresion nos permitira ejecutar funciones con filtros.*/
+
+/*El objeto &#39;CriteriaBuilder,LogicalOperator,ComparationOperator&#39;, estan disponibles y son globales en el componente.*/
+
+var data = CriteriaBuilder.createExpression();
+
+/*La siguiente linea agrega un filtro a la expresion a realizar, se pueden agregar tantos se requiera.*/
+data.addRule(&#39;CountryCode&#39;, ComparationOperator.Equal, data.Id);
+
+/*Si se requiere,el componente permite agregar una expresion como regla. Ej. */
+var data2 = CriteriaBuilder.createExpression(LogicalOperator.AND);
+
+data2.addRule(&#39;CountryCode&#39;, ComparationOperator.Equal, data.Id);
+
+data.addExpression(data2);
+</code></pre>
+<h4>createQuery (nombreEntidad: string, campos: string[], expresion : object : undefined )</h4>
+<p><em>El metodo createQuery nos permitia acceder a los datos requeridos.</em></p>
+<pre><code class="language-javascript">
+var querySelectCountry = CrudServices.createQuery(
+    &#39;Sistran.Core.Application.Common.Entities.Country&#39;,//Nombre de la entidad
+    [&#39;CountryCode&#39;, &#39;Description&#39;],//Campos requeridos
+    data.build()//Si se requiere una expresion se agrega, este parametro no es obligatorio
+);
+</code></pre>
+<h4>createMutation</h4>
+<p><em>El metodo createMutation nos permitira modificar el origen de datos.</em></p>
+<pre><code class="language-javascript">/*Ej : Insert */
+
+var queryMutation = CrudServices.createMutation(
+    &#39;Sistran.Core.Application.Common.Entities.Country&#39;,//Nombre de la entidad
+    MutationType.POST,//Tipo de peticion
+    {CountryCode:&#39;&#39;,Description:&#39;Colombia&#39;}//Entidad a crear
+);
+
+/*Ej : Update */
+
+var queryMutation = CrudServices.createMutation(
+    &#39;Sistran.Core.Application.Common.Entities.Country&#39;,//Nombre de la entidad
+    MutationType.PUT,//Tipo de peticion
+    {CountryCode:&#39;1&#39;,Description:&#39;Colombia&#39;}//Entidad a modificar
+);
+
+/*Ej : Delete */
+
+var queryMutation = CrudServices.createMutation(
+    &#39;Sistran.Core.Application.Common.Entities.Country&#39;,//Nombre de la entidad
+    MutationType.DELETE,//Tipo de peticion
+    data.build()//Recibe una expresion
+);
+</code></pre>
+<h4>Execute ( createMutation || createQuery)</h4>
+<p><em>Ejecuta una accion de tipo createMutation o createQuery.</em></p>
+<pre><code class="language-javascript">/*Ej: createMutation*/ 
+
+crudServices.Execute(queryMutation)
+.then((result) =&gt; {
+    //result es un objeto
+    //DELETE : result=true
+    //PUT : result=entidad
+    //POST : result=entidad
+})
+.catch((error) =&gt; { console.log(error); });
+
+/*Ej: createQuery*/ 
+
+crudServices.Execute(queryMutation)
+.then((result) =&gt; {
+    //result es un objeto de tipo Array
+})
+.catch((error) =&gt; { console.log(error); });
+</code></pre>
+
+  </main>
+</body>
+</html>

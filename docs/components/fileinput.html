@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\fileinput.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Fileinput</h1>
+<p><em>El componente permite mostrar inputfile para adjuntar archivos</em></p>
+<pre><code class="language-html">
+&lt;input class=&quot;uif-inputfile&quot; type=&quot;file&quot; id=&quot;inputControlMultiple&quot; data-input=&quot;false&quot; data-text=&quot;Elija uno o varios archivos&quot; multiple=&quot;multiple&quot;&gt;
+
+&lt;input class=&quot;uif-inputfile&quot;  type=&quot;file&quot; id=&quot;inputControlSingle&quot; data-input=&quot;true&quot;&gt;
+</code></pre>
+<h3>Parámetros</h3>
+<h4>[multiple]</h4>
+<p>Type: <code>string</code></p>
+<p><code>multiple | &#39;&#39; </code></p>
+<p>Especifica si el input acepta multiples archivos. El valor también puede estar vacío ej. <code>&lt;input class=&quot;uif-inputfile&quot; multiple&gt;</code></p>
+<h4>[data-text]</h4>
+<p>Type: <code>string</code> </p>
+<p>El placeholder</p>
+<h4>[data-input]</h4>
+<p>Type: <code>booleand</code> </p>
+<p>Habilita o dehabilita la entrada de texto</p>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\inline.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Inline</h1>
+<p><em>El componente permite crear un formulario con botones (prev, next, cancel, accept). 
+Los botones disparan eventos. El componente puede ser usado para editar registros de una UifDatatable.</em>
+--- Sólo debe utilzarse acompañado del componente UifDataTable en el caso que el mismo esté dentro de una ventana modal.</p>
+<pre><code class="language-html">&lt;form class=&quot;uif-inline&quot; id=&quot;inlineForm&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;column&quot;&gt;
+            &lt;label for=&quot;Empresa&quot;&gt;Empresa&lt;/label&gt;
+            &lt;input data-val=&quot;true&quot; data-val-required=&quot;The Empresa field is required.&quot; id=&quot;Empresa&quot; name=&quot;Empresa&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+            &lt;span class=&quot;field-validation-valid&quot; data-valmsg-for=&quot;Empresa&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;column&quot;&gt;
+            &lt;label for=&quot;Ciudad&quot;&gt;Ciudad&lt;/label&gt;
+            &lt;input data-val=&quot;true&quot; data-val-required=&quot;The Ciudad field is required.&quot; id=&quot;Ciudad&quot; name=&quot;Ciudad&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+            &lt;span class=&quot;field-validation-valid&quot; data-valmsg-for=&quot;Ciudad&quot; data-valmsg-replace=&quot;true&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;column&quot;&gt;
+            &lt;label for=&quot;Pais&quot;&gt;Pais&lt;/label&gt;
+            &lt;input id=&quot;Pais&quot; name=&quot;Pais&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<h3>Métodos</h3>
+<h4>show</h4>
+<p>Oculta el form</p>
+<pre><code class="language-javascript">$(&#39;#inlineForm&#39;).UifInline(&#39;show&#39;);
+</code></pre>
+<h4>hide</h4>
+<p>Muestra el form</p>
+<pre><code class="language-javascript">$(&#39;#inlineForm&#39;).UifInline(&#39;hide&#39;);
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>Save</li>
+<li>Cancel</li>
+<li>Previous</li>
+<li>Next</li>
+</ul>
+<pre><code class="language-javascript">$(&#39;#inlineForm&#39;).on(&#39;Next&#39;, function () {
+    //
+});
+
+$(&#39;#inlineForm&#39;).on(&#39;Previous&#39;, function () {
+    //
+});
+
+$(&#39;#inlineForm&#39;).on(&#39;Save&#39;, function () {
+    //
+});
+
+$(&#39;#inlineForm&#39;).on(&#39;Cancel&#39;, function () {
+    //
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

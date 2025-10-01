@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\datatable.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Datatable</h1>
+<p><em>El componente permite mostrar una tabla con un origen de datos</em></p>
+<pre><code class="language-html">&lt;!--primero se debe crear el elemento--&gt;
+&lt;table class=&quot;uif-table&quot; data-source=&quot;/Documentation/GetRecords&quot; data-exporttocsv=&quot;true&quot; data-exportname=&quot;cultura&quot; data-add=&quot;true&quot; data-edit=&quot;true&quot; data-delete=&quot;false&quot; data-filter=&quot;true&quot; data-selectiontype=&quot;single&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th data-property=&quot;Id&quot;&gt;Id&lt;/th&gt;
+            &lt;th data-property=&quot;Empresa&quot;&gt;Empresa&lt;/th&gt;
+            &lt;th data-property=&quot;Ciudad&quot;&gt;Ciudad&lt;/th&gt;
+            &lt;th data-property=&quot;Pais&quot;&gt;País&lt;/th&gt;
+            &lt;th data-property=&quot;Monto&quot; data-type=&quot;currency&quot;&gt;Monto&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<pre><code class="language-javascript">//se puede inicializar por javascript--&gt;
+
+$(&quot;#table&quot;).UifDataTable({sourceData: data})
+</code></pre>
+<h3>Parámetros</h3>
+<h4>[checkcolumnname]</h4>
+<p>Type: <code>string</code></p>
+<p>Default : <code>_isChecked</code></p>
+<p>Establece el valor de la llave, por el cual si es <code>true</code> la fila quedara seleccionada en la inicializacion de la tabla.</p>
+<pre><code class="language-javascript">
+$(&quot;#table&quot;).UifDataTable({sourceData: data, checkColumnName : &#39;Habilitado&#39;});
+</code></pre>
+<h4>[errorSourceCallBack]</h4>
+<p>Type: <code>function</code> </p>
+<p>Ejecuta la funcion si la peticion al servicio arroja error.</p>
+<pre><code class="language-javascript">function errorTable (status, error) {
+    //do something.
+}
+$(&quot;#table&quot;).UifDataTable({sourceData: data,errorSourceCallBack:errorTable});
+</code></pre>
+<h4>[searchableColumns]</h4>
+<p>Type: <code>array</code> </p>
+<p><code>[0,2,3]</code></p>
+<p>Establece las columnas por las cuales se desea filtrar.</p>
+<pre><code class="language-javascript">//se puede inicializar por javascript--&gt;
+
+$(&quot;#table&quot;).UifDataTable({sourceData: data,searchableColumns:[0,2,3]})
+</code></pre>
+<h4>[widthColumns]</h4>
+<p>Type: <code>array</code> </p>
+<p><code>[{width:&#39;10px&#39;,column:0},{width:&#39;200px&#39;,column:1}]</code></p>
+<p>Establece el ancho de cada columna.</p>
+<pre><code class="language-javascript">//se puede inicializar por javascript--&gt;
+
+$(&quot;#table&quot;).UifDataTable({sourceData: data,widthColumns:[{width:&#39;10px&#39;,column:0},{width:&#39;200px&#39;,column:1}]})
+</code></pre>
+<h4>[data-selectiontype]</h4>
+<p>Type: <code>string</code> </p>
+<p><code>none | single | multiple</code></p>
+<p>Establece el tipo selección de registros</p>
+<h4>[data-showcheckall]</h4>
+<p>Type: <code>boolean</code> </p>
+<p><code>true | false</code></p>
+<p>Establece si el check all se va a mostrar, solo aplica para selectiontype multiple.</p>
+<h4>[data-source]</h4>
+<p>Type: <code>string</code> </p>
+<p>Url con el origen de datos en formato json que espera la tabla para renderizarse.</p>
+<h4>[data-hiddencolumns]</h4>
+<p>Type: <code>array</code> </p>
+<p>Array con los indices de las columnas a ocultarse. Ej: <code>[0, 5, 8]</code></p>
+<h4>[data-propertynames]</h4>
+<p>Type: <code>array</code> </p>
+<p>Array con los nombres de las propiedades para las cuales 
+se requiere un custom binding por columna. Ej: <code>[&quot;Id&quot;, &quot;Name&quot;]</code></p>
+<h4>[data-edit]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Determina si el componente permite edición de items</p>
+<h4>[data-delete]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Determina si el componente permite eliminación de items</p>
+<h4>[data-add]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Determina si el componente permite agregar de items</p>
+<h4>[data-filter]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Determina si el componente permite filtrar items</p>
+<h4>[data-paginate]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Determina si el componente permite paginación</p>
+<h4>[data-pagesize]</h4>
+<p>Type: <code>number</code> </p>
+<p>Determina el numero de registros por página</p>
+<h4>[data-title]</h4>
+<p>Type: <code>string</code> </p>
+<p>Determina el titulo de la tabla</p>
+<h4>[data-exporttocsv]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Default: <code>false</code></p>
+<p>Determina si el componente permite exportación de registros.</p>
+<h4>[data-exporttoexcel]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Default: <code>false</code></p>
+<p>Determina si el componente permite exportación de registros.</p>
+<pre><code class="language-javascript">//Parametro general que define el parametro exportar para todas las tablas.
+//Este valor lo puede sobreescribir el valor asignado en una tabla.
+$.fn.UifDataTable.exporttoexcel = true; /// true || false
+</code></pre>
+<h4>[data-exportoprint]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Default: <code>false</code></p>
+<p>Determina si el componente permite imprimir los registro.</p>
+<h4>[data-exportpath]</h4>
+<p>Type: <code>string</code> </p>
+<p>Ruta a configurar en caso que se utilicen áreas de MVC. Por default usa /Export para los controladores de
+Generación y Descarga del CSV</p>
+<h4>[data-exportname]</h4>
+<p>Type: <code>string</code> </p>
+<p>Nombre que recibirá el archivo de exportado.</p>
+<h4>[data-sort]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Determina si el componente permite ordenamiento por columnas</p>
+<h4>[data-commandcolumnwidth]</h4>
+<p>Type: <code>string</code> </p>
+<p>Determina el tamaño de la columna de acciones, default &#39;130px&#39;.</p>
+<h4>[data-width]</h4>
+<p>Type: <code>string</code> </p>
+<p>Determina el tamaño de la columna.</p>
+<h4>[data-exportselected]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Si es true, los elementos a exportar en la tabla seran los seleccionados, si no hay
+ningun registro seleccionado exportara todos los registros.</p>
+<h4>[data-alignactions]</h4>
+<p>Type: <code>string</code></p>
+<p>Values <code>left || right</code></p>
+<p>Default <code>right</code></p>
+<pre><code class="language-javascript">//Parametro general que define la posicion de columna de acciones de toda la aplicacion
+//Este valor lo puede sobreescribir el valor asignado en una tabla.
+$.fn.UifDataTable.alignActions = &#39;left&#39;; /// left || right
+</code></pre>
+<p>Establece la posicion de la columna de acciones.</p>
+<h3>Mètodos</h3>
+<h4>addRow</h4>
+<p><em>data</em>
+Type: <code>object</code> </p>
+<p>Agrega un registros</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;addRow&#39; , data)
+</code></pre>
+<h4>editRow</h4>
+<p><em>data</em>
+Type: <code>object</code></p>
+<p><em>index</em>
+Type: <code>number</code>  </p>
+<p>Edita un registro</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;editRow&#39; , data, index)
+</code></pre>
+<h4>deleteRow</h4>
+<p><em>index</em>
+Type: <code>number</code>  </p>
+<p>Edita un registro</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;deleteRow&#39; , index)
+</code></pre>
+<h4>getSelected</h4>
+<p>Retorna los registros seleccionados</p>
+<pre><code class="language-javascript">const selected = $(&quot;#table&quot;).UifDataTable(&#39;getSelected&#39;)
+</code></pre>
+<h4>next</h4>
+<p>Avanza la selección</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;next&#39;)
+</code></pre>
+<h4>previous</h4>
+<p>Retrocede la selección</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;previous&#39;)
+</code></pre>
+<h4>getData</h4>
+<p>Retorna la data</p>
+<pre><code class="language-javascript">const tableData = $(&quot;#table&quot;).UifDataTable(&#39;getData&#39;)
+</code></pre>
+<h4>unselect</h4>
+<p>Remueve la selección</p>
+<pre><code class="language-javascript">const tableData = $(&quot;#table&quot;).UifDataTable(&#39;unselect&#39;)
+</code></pre>
+<h4>clear</h4>
+<p>Limpia la tabla</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;clear&#39;)
+</code></pre>
+<h4>setLoading</h4>
+<p>Cambia el estado de la tabla a &quot;Procesando&quot;, la cual sirve de utilidad para procesos con cargue de recursos externos, como uso de promesas, etc.</p>
+<pre><code class="language-javascript">$(&quot;#table&quot;).UifDataTable(&#39;setLoading&#39;,true)
+
+$(&quot;#table&quot;).UifDataTable(&#39;setLoading&#39;,false)
+</code></pre>
+<h4>setSelect</h4>
+<p>Selecciona los registros enviados</p>
+<p>Recibe un objeto con la siguiente estructura.</p>
+<pre><code class="language-javascript">var value:{
+    label:&#39;Id&#39;,//El campo por el cual se desea buscar.
+    values:[1,12,24] //Los valores a seleccionar. Seleccion multiple
+    //value:1 // Para tablas Seleccion single
+}
+$(&quot;#table&quot;).UifDataTable(&#39;setSelect&#39;,value)
+</code></pre>
+<h4>setUnselect</h4>
+<p>Selecciona los registros enviados</p>
+<pre><code class="language-javascript">var value:{
+    label:&#39;Id&#39;,//El campo por el cual se desea buscar
+    values:[1,12,24] //Los valores a deseleccionar.
+}
+$(&quot;#table&quot;).UifDataTable(&#39;setUnselect&#39;, value);
+</code></pre>
+<h4>getRowIndex</h4>
+<p>Devuelve los indices de las filas dependiendo a un intervalo de valores</p>
+<pre><code class="language-javascript">$(&#39;#tableSingle&#39;).UifDataTable(&#39;getRowIndex&#39;, {label:&#39;Empresa&#39;, values:[&#39;Microsoft&#39;]})
+
+//result [{Empresa: Microsoft, index: 1},...]
+</code></pre>
+<h4>setRowColor</h4>
+<p>Modifica el color de background una fila.</p>
+<pre><code class="language-javascript">
+$(&#39;#tableSingle&#39;).UifDataTable(&#39;setRowColor&#39;, index, &#39;Green&#39;)// rgba, hexadecimal.
+
+// Si el parametro color se envia vacio, vuelve a su color original.
+</code></pre>
+<h4>setCellColor</h4>
+<p>Modifica el color de background una columna especifica de una fila.</p>
+<pre><code class="language-javascript">
+$(&#39;#tableSingle&#39;).UifDataTable(&#39;setCellColor&#39;, [{row:1, cell:0}], &#39;Green&#39;)// rgba, hexadecimal.
+
+// Si el parametro color se envia vacio, vuelve a su color original.
+</code></pre>
+<h4>resetDefaultColor</h4>
+<p>Devuelve el color de todas las filas a su background original</p>
+<pre><code class="language-javascript">
+$(&#39;#tableSingle&#39;).UifDataTable(&#39;resetDefaultColor&#39;)
+</code></pre>
+<h4>order</h4>
+<p>Ordena los registros segun el parametro</p>
+<pre><code class="language-javascript">
+$(&#39;#tableSingle&#39;).UifDataTable(&#39;order&#39;, [1,&#39;asc&#39;]); /// asc || desc
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>rowEdit </li>
+<li>rowAdd</li>
+<li>rowDelete</li>
+<li>rowSelected</li>
+<li>selectAll</li>
+<li>desSelectAll</li>
+</ul>
+<pre><code class="language-javascript">$(&#39;#table&#39;).on(&#39;rowEdit&#39;, function (event, data, position) {
+    //
+});
+$(&#39;#table&#39;).on(&#39;rowAdd&#39;, function (event, data, position) {
+    //
+});
+$(&#39;#table&#39;).on(&#39;rowDelete&#39;, function (event, data, position) {
+    //
+});
+$(&#39;#table&#39;).on(&#39;rowSelected&#39;, function (event, data, position) {
+    //
+});
+$(&#39;#table&#39;).on(&#39;rowDeselected&#39;, function (event, data, position) {
+    //
+});
+$(&#39;#table&#39;).on(&#39;selectAll&#39;, function (event) {
+    //            
+});
+$(&#39;#table&#39;).on(&#39;desSelectAll&#39;, function (event) {
+    //
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

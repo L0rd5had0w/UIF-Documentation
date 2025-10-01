@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>router.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Router</h1>
+<p><em>La aplicación permite utilizar un router 
+para hacer llamadas asincrónicas, traer contenido remoto e insertarlo dentro
+de un contenedor en la página actual</em></p>
+<pre><code class="language-javascript">//inicialización
+const router = uif2.router({ container: &quot;#targetContainer&quot;, cache: false });
+
+//definición de rutas
+router.add(&quot;routeNameA&quot;, &quot;path/to/source&quot;, afterCallback, beforeCallback);
+router.add(&quot;routeNameB&quot;, &quot;path/to/source&quot;, afterCallback);
+router.add(&quot;routeNameC&quot;, &quot;path/to/source&quot;, afterCallback);
+
+//correr una ruta
+router.run(&quot;routeNameA&quot;);
+</code></pre>
+<h3>Parámetros de inicialización</h3>
+<h4>[container]</h4>
+<p>Type: <code>string</code></p>
+<p>Selector que indica el div contenedor en donde el router insertará el contenido remoto.</p>
+<h3>Métodos</h3>
+<h4>add(name, pathToTheSource [,afterCallback] [,beforeCallback])</h4>
+<p><em>name</em>
+Type: <code>string</code></p>
+<p>El nombre de la ruta. Con este nombre se podra identificar para luego ser llamada desde un link o desde el método <em>run</em></p>
+<pre><code class="language-javascript">//definición de ruta
+router.add(&quot;routeNameA&quot;, &quot;path/to/source&quot;);
+</code></pre>
+<pre><code class="language-HTML">&lt;!-- link invocando la ruta --&gt;
+&lt;a href=&quot;#routeNameA&quot;&gt;mostrar ruta A&lt;/a&gt;
+</code></pre>
+<p><em>pathToTheSource</em>
+Type: <code>string</code></p>
+<p>El path desde donde el router hará un request 
+para traer el contenido que insertará en el contenedor de destino.</p>
+<p><em>afterCallback</em>
+Type: <code>string</code></p>
+<p>Callback que se ejecutará luego de traer el contenido remoto e insertarlo en el DOM.</p>
+<p><em>beforeCallback</em>
+Type: <code>string</code></p>
+<p>Callback que se ejecutará antes traer el contenido remoto.</p>
+
+  </main>
+</body>
+</html>

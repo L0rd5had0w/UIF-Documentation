@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\formatInput.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>FormatInput</h1>
+<p><em>El componente permitira formatear los input con el formato asignado.</em></p>
+<pre><code class="language-html">&lt;input class=&quot;uif-currency-format&quot; type=&quot;text&quot; /&gt;
+</code></pre>
+<h3>Uso</h3>
+<p><em>En el archivo &quot;uif-touch-4.0.0.es&quot; se realiza una parametrizacion inicial por defecto, en el cual se define los valores con los cuales el formateo se va a realizar</em></p>
+<pre><code class="language-html">$.uif2.defaults.decimalSeparator = &quot;.&quot;;
+$.uif2.defaults.thousandsSeparator = &quot;,&quot;;
+$.uif2.defaults.decimalPlaces = &quot;3&quot;;
+</code></pre>
+<p><em>Este formato se puede ir modificando a lo largo de la aplicacion lo cual permite que todos los inputs modifiquen su comportamiento.</em></p>
+
+  </main>
+</body>
+</html>

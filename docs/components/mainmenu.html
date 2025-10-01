@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\mainmenu.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>MainMenu</h1>
+<p><em>El componente permite crear el menu de opciones.</em></p>
+<h2>Inicialización</h2>
+<pre><code class="language-javascript">
+var callback = function (isSearchable, module, parent) {
+    //do something
+}
+
+$(&#39;#replaceMenu&#39;).UifMainMenu({ 
+    source: null, // Url para obtener la informacion.
+    sourceData: null, // Datos en JSON
+    pathBaseBack: &#39;&#39;, // Determina si los menus traen algun contenido adicional en su url
+    pathBaseFront: &#39;&#39;, // Determina el pathBase de la pagina
+    filter: true, // Determina si el menu tiene filtro
+    clickCallBack: null // funcion a ejecutar cuando se da click en una opcion 
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

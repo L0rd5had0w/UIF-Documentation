@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\aseguradolink.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h3>Asegurado Link</h3>
+<p><em>Este control permite un una configuracion rapida de los links para acceso a qsise.</em></p>
+<pre><code class="language-html">&lt;a id=&quot;linkAccess&quot; class=&quot;btn btn-primary&quot;&gt;Access QSISE&lt;/a&gt;
+</code></pre>
+<pre><code class="language-javascript">
+$.fn.UifAseguradoLink.path = &#39;http://consultas.sistran.com.ar/consultas#/qsise/execute/&#39;;
+
+$(&#39;#linkAccess&#39;).UifAseguradoLink(&#39;cb9c834d-e0ad-418e-8a95-cccad0e7af2d?IdAgente=1&#39;);
+</code></pre>
+<p><em>En la configuracion inicial se asigna en una variable global &quot;$.fn.UifAseguradoLink.path&quot; la cual asignara la ruta base de la aplicacion de qsise.</em></p>
+<h3>Usabilidad</h3>
+<pre><code class="language-javascript">$(&#39;#linkAccess&#39;).UifAseguradoLink(&#39;cb9c834d-e0ad-418e-8a95-cccad0e7af2d?IdAgente=1&#39;);
+</code></pre>
+<p><em>Permite asignar parametros al link, lo cual permitira el acceso a qsise con un parametro en especifico.</em></p>
+
+  </main>
+</body>
+</html>

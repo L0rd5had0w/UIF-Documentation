@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\editor.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Editor</h1>
+<p><em>El componente permite mostrar editor de texto</em></p>
+<pre><code class="language-html">&lt;textarea id=&quot;editor&quot; class=&quot;uif-editor&quot;&gt;&lt;/textarea&gt;
+</code></pre>
+<h3>Métodos</h3>
+<h4>setHtmlText</h4>
+<p><em>value</em></p>
+<p>Type: <code>string</code></p>
+<p>Setea el valor</p>
+<pre><code class="language-javascript">$(&#39;#editor&#39;).UifEditor(&#39;setHtmlText&#39;, &#39;Esto es una &lt;b&gt;prueba&lt;/b&gt;.&#39;);
+</code></pre>
+<h4>getHtmlText</h4>
+<p>Obtiene el contenido del input</p>
+<pre><code class="language-javascript">$(&#39;#editor&#39;).UifEditor(&#39;getHtmlText&#39;);
+</code></pre>
+
+  </main>
+</body>
+</html>

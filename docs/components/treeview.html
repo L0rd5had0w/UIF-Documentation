@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\treeview.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Timepicker</h1>
+<p>_El componente permite mostrar datos en una estructura de árbol</p>
+<pre><code class="language-html">&lt;!--primero se debe crear el elemento--&gt;
+&lt;input type=&quot;text&quot; class=&quot;uif-treeview&quot; id=&quot;treeview&quot;/&gt;
+</code></pre>
+<h3>Métodos</h3>
+<h4>init</h4>
+<p>Inicializa el árbol</p>
+<pre><code class="language-javascript">$(&quot;#treeview&quot;).UifTreeView();
+
+</code></pre>
+<p>###selection
+Type: <code>string</code></p>
+<p>Determina el tipo de seleccion.</p>
+<pre><code class="language-html">&lt;!--primero se debe crear el elemento--&gt;
+&lt;input type=&quot;text&quot; data-selection=&quot;multiple&quot; class=&quot;uif-treeview&quot; id=&quot;treeview&quot;/&gt;
+</code></pre>
+<pre><code class="language-javascript">$(&quot;#treeview&quot;).UifTreeView({selection: &#39;single&#39;});//single || multiple
+</code></pre>
+<h4>getSelected</h4>
+<p>Obtiene el valor ingresado en el componente</p>
+<pre><code class="language-javascript">const selected = $(&quot;#treeview&quot;).UifTreeView(&#39;getSelected&#39;);
+</code></pre>
+<h4>createNode</h4>
+<p><em>selectedNode</em>
+Type: <code>object</code></p>
+<p>El nodo seleccionado (que será el padre del nuevo nodo)</p>
+<p><em>newNode</em>
+Type: <code>object</code></p>
+<p>El nuevo nodo</p>
+<p>Crea un nodo debajo del nodo seleccionado</p>
+<pre><code class="language-javascript">const selectedNode = $(&quot;#treeview&quot;).UifTreeView(&#39;getSelected&#39;);
+if (selectedNode.length &gt; 0) {
+    const nodeId = Math.random();
+    const newNode =  { id: nodeId, text: &#39;Nodo de prueba #&#39; + nodeId };
+    $(&quot;#treeview&quot;).UifTreeView(&#39;createNode&#39;, selectedNode, newNode);
+}
+</code></pre>
+<h4>renameNode</h4>
+<p><em>selectedNode</em>
+Type: <code>object</code></p>
+<p>El nodo seleccionado a renombrar</p>
+<p><em>newNodeName</em>
+Type: <code>string</code></p>
+<p>El nuevo nombre para el nodo</p>
+<p>Renombra un nodo</p>
+<pre><code class="language-javascript">const selectedNode = $(&quot;#treeview&quot;).UifTreeView(&#39;getSelected&#39;);
+if (selectedNode.length &gt; 0) {
+    const newName = &#39;Nuevo nombre de prueba&#39;;
+    $(&quot;#treeview&quot;).UifTimepicker(&#39;renameNode&#39;, selectedNode, newName);
+}
+</code></pre>
+<h4>renameNode</h4>
+<p><em>selectedNode</em>
+Type: <code>object</code></p>
+<p>El nodo seleccionado a renombrar</p>
+<p><em>newNodeName</em>
+Type: <code>string</code></p>
+<p>El nuevo nombre para el nodo</p>
+<p>Renombra un nodo</p>
+<pre><code class="language-javascript">const selectedNode = $(&quot;#treeview&quot;).UifTreeView(&#39;getSelected&#39;);
+if (selectedNode.length &gt; 0) {
+    const newName = &#39;Nuevo nombre de prueba&#39;;
+    $(&quot;#treeview&quot;).UifTimepicker(&#39;renameNode&#39;, selectedNode, newName);
+}
+</code></pre>
+<h4>deleteNode</h4>
+<p><em>selectedNode</em>
+Type: <code>object</code></p>
+<p>El nodo seleccionado a eliminar</p>
+<p>Elimina un nodo</p>
+<pre><code class="language-javascript">const selectedNode = $(&quot;#treeview&quot;).UifTreeView(&#39;getSelected&#39;);
+if (selectedNode.length &gt; 0) {
+    $(&quot;#treeview&quot;).UifTimepicker(&#39;deleteNode&#39;, selectedNode);
+}
+</code></pre>
+<h4>reload</h4>
+<p>Refresca el árbol</p>
+<pre><code class="language-javascript">$(&quot;#treeview&quot;).UifTreeView(&#39;reload&#39;);
+</code></pre>
+<h4>setSelected</h4>
+<p>Selecciona 1 o mas nodos.</p>
+<pre><code class="language-javascript">$(&#39;#tree&#39;).UifTreeView(&#39;setSelected&#39;, &quot;2&quot;)
+//o
+$(&#39;#tree&#39;).UifTreeView(&#39;setSelected&#39;, [&quot;2&quot;,1])
+</code></pre>
+<h4>setUnselect</h4>
+<p>DeSelecciona 1 o mas nodos.</p>
+<pre><code class="language-javascript">$(&#39;#tree&#39;).UifTreeView(&#39;setUnselect&#39;, &quot;2&quot;)
+//o
+$(&#39;#tree&#39;).UifTreeView(&#39;setUnselect&#39;, [&quot;2&quot;,1])
+</code></pre>
+<h4>unselect</h4>
+<p>DeSelecciona todos los nodos del arbol.</p>
+<pre><code class="language-javascript">$(&#39;#tree&#39;).UifTreeView(&#39;unselect&#39;)
+</code></pre>
+<h4>unselect</h4>
+<p>Selecciona todos los nodos del arbol(solo esta habilitado para seleccion multiple).</p>
+<pre><code class="language-javascript">$(&#39;#tree&#39;).UifTreeView(&#39;selectAll&#39;)
+</code></pre>
+
+  </main>
+</body>
+</html>

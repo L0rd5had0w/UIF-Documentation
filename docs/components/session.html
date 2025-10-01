@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\session.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Session</h1>
+<p><em>Configuracion de session de usuarios entre tabs del navegador</em></p>
+<h3>Parámetros de inicialización</h3>
+<pre><code class="language-javascript">//Variables para uso de validacion de la session
+//Preferiblemente que estas esten en el archivo
+//uif-touch-4.0.0.es
+// URL, metodo a controllador el cual nos dira si la session esta activa o no.
+$.uif2.defaults.validatorSessionURL = location.origin + rootPath + &#39;Account/validateSession&#39;;
+// URL, a direccionar en caso de que la session no este activa.
+$.uif2.defaults.loginURL = location.origin + rootPath + &#39;Account/Login&#39;;
+
+//callback, ejecucion despues de validar si la session esta activa
+// Por defecto la funcion redirecciona al login, si se desea agregar otra accion
+// se puede cambiar su funcionalidad al deseado.
+/*
+$.uif2.defaults.callBackValidatorSession = function (isError, data) {
+  if (isError)
+    console.log(&#39;Se debe realizar la configuracion de la variable validatorSessionURL&#39;);
+  else if (!data){
+    location.href = $.uif2.defaults.loginURL;
+  }
+};
+*/
+</code></pre>
+<h2>CSHARP</h2>
+<ul>
+<li>Configuracion Basica Controller, en el ejemplo se usara el Controller &#39;Account&#39;</li>
+</ul>
+<pre><code class="language-csharp">
+[AllowAnonymous]
+public ActionResult validateSession()
+{
+    return Json(Request.IsAuthenticated, JsonRequestBehavior.AllowGet);
+}
+</code></pre>
+
+  </main>
+</body>
+</html>

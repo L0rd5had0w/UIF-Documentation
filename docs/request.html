@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>request.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Request</h1>
+<p><em>Helper para ejecutar requests asincronos. Retorna siempre una promesa</em></p>
+<pre><code class="language-javascript">//inicialización
+const request = new Uif2.request();
+
+request.json(&#39;https://jsonplaceholder.typicode.com/posts/1&#39;)
+  .then((response) =&gt; {
+    console.log(response);
+  })
+  .catch((err) =&gt; {
+    console.err(err);
+  });
+</code></pre>
+<h3>Métodos</h3>
+<h4>json(url)</h4>
+<p><em>url</em>
+Type: <code>string</code></p>
+<p>Ejecuta en GET sobre la <code>url</code> y devuelve un objeto.</p>
+<pre><code class="language-javascript">request.json(&#39;https://jsonplaceholder.typicode.com/posts/1&#39;)
+  .then((response) =&gt; {
+    console.log(response);
+  })
+</code></pre>
+<h4>html(url)</h4>
+<p><em>url</em>
+Type: <code>string</code></p>
+<p>Ejecuta en GET sobre la <code>url</code> y devuelve la respuesta como html.</p>
+<pre><code class="language-javascript">request.html(&#39;https://jsonplaceholder.typicode.com/posts/1&#39;)
+  .then((response) =&gt; {
+    console.log(response);
+  });
+</code></pre>
+<h4>post(url)</h4>
+<p><em>url</em>
+Type: <code>string</code></p>
+<p>Ejecuta en POST sobre la <code>url</code>.</p>
+<pre><code class="language-javascript">const data = { name: &#39;asd&#39;, age: 34};
+request.post(&#39;https://jsonplaceholder.typicode.com/posts/1&#39;, data)
+  .then((response) =&gt; {
+    console.log(response);
+  });
+</code></pre>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\timepicker.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Timepicker</h1>
+<p>_El componente permite mostrar un input para seleccionar una hora</p>
+<pre><code class="language-html">&lt;!--primero se debe crear el elemento--&gt;
+&lt;input type=&quot;text&quot; class=&quot;uif-Timepicker&quot; id=&quot;timepicker&quot;/&gt;
+</code></pre>
+<h3>Métodos</h3>
+<h4>setValue</h4>
+<p><em>time</em></p>
+<p>Type: <code>string: HH:MM PM/AM</code> </p>
+<p>Establece el valor</p>
+<pre><code class="language-javascript">$(&quot;#timepicker&quot;).UifTimepicker(&#39;setValue&#39;, &#39;12:55 PM&#39;);
+
+</code></pre>
+<h4>clear</h4>
+<p>Limpia el componente</p>
+<pre><code class="language-javascript">$(&quot;#timepicker&quot;).UifTimepicker(&#39;clear&#39;);
+</code></pre>
+<h4>getValue</h4>
+<p>Obtiene el valor ingresado en el componente</p>
+<pre><code class="language-javascript">$(&quot;#timepicker&quot;).UifTimepicker(&#39;getValue&#39;);
+</code></pre>
+<h4>disabled</h4>
+<p><em>option</em></p>
+<p>Type: <code>boolean</code></p>
+<p>Establece la propiedad <code>disabled</code> del componente</p>
+<pre><code class="language-javascript">$(&quot;#timepicker&quot;).UifTimepicker(&#39;disabled&#39;, true);
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>timepicker.change</li>
+</ul>
+<pre><code class="language-javascript">$(&#39;#timepicker&#39;).on(&quot;timepicker.change&quot;, function (event, time) {
+     console.log(&#39;Valor &#39; + e.value);
+     console.log(&#39;La hora es &#39; + e.hours);
+     console.log(&#39;Los minutos &#39; + e.minutes);
+     console.log(&#39;Meridiano &#39; + e.meridian);
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\wizard.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Wizard</h1>
+<p><em>Permite organizar contenidos mediante un wizard</em></p>
+<pre><code class="language-html">
+&lt;div id=&quot;wizard&quot; class=&quot;uif-wizard&quot;&gt;
+    &lt;div class=&quot;uif-step&quot; data-title=&quot;Primer step&quot;&gt;
+        &lt;!--contenido del step --&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;uif-step&quot; data-title=&quot;Segundo step&quot;&gt;
+        &lt;!--contenido del step --&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;uif-step&quot; data-title=&quot;Tercer step&quot;&gt;
+        &lt;!--contenido del step --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">$(&quot;#wizard&quot;).UifWizard({ onStep: stepFunction, onFinish: finishFunction });
+</code></pre>
+<h3>Parámetros de inicialización</h3>
+<h4>[onStep]</h4>
+<p>Type: <code>function</code> </p>
+<p>Callback que se ejecutará en cada cambio de step.</p>
+<pre><code class="language-javascript">function (event, currentIndex, newIndex) {
+    //Valido el primer formulario.
+    if (currentIndex == 0) {
+        if ($(&quot;#form1&quot;).valid()) {
+            //Retorno true si el paso es valido, de lo contrario retorno false.
+            // Si es necesario puedo llamar a $ajax para guardar los datos asociados al paso actual.
+            return true;
+        }
+        else
+            return false;
+    }
+
+    //Para los demás pasos, la función devuelve true siempre, en este ejemplo.
+    return true;
+
+};
+</code></pre>
+<h4>[onFinish]</h4>
+<p>Type: <code>function</code> </p>
+<p>Callback que se ejecutará al concluír el último step.</p>
+<pre><code class="language-javascript">function (event, currentIndex) {
+    //En esta función se puede validar los pasos anteriores.
+    // Si es necesario puedo llamar a $ajax para guardar los datos en el servidor.
+
+    $(&quot;#alert&quot;).UifAlert(&#39;show&#39;, &#39;Los datos han sido guardado correctamente&#39;, &#39;info&#39;);
+
+    //Retorno true si todos los pasos son validos, de lo contrario retorno false.
+    return true;
+
+}  
+</code></pre>
+
+  </main>
+</body>
+</html>

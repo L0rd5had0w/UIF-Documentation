@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\listview.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Listview</h1>
+<p><em>El componente crea un lista de items a partir de un origen de datos</em></p>
+<pre><code class="language-html">&lt;div class=&quot;uif-listview&quot; id=&quot;listview&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">//ejemplo de inicialización del componente
+$(&quot;#listview&quot;).UifListView({
+        customEdit: true,
+        localMode: true,
+        add: true,
+        edit: true,
+        displayTemplate: &quot;#display-template&quot;,
+        drag: true,
+        title:&quot;Abm Local en Lista&quot;,
+        sourceData: source
+    });
+</code></pre>
+<h3>Parámetros de inicialización</h3>
+<h4>[errorSourceCallBack]</h4>
+<p>Type: <code>function</code> </p>
+<p>Default: <code>null</code></p>
+<p>Ejecuta la funcion si la peticion al servicio arroja error.</p>
+<pre><code class="language-javascript">function errorLoadData (status, error) {
+    //do something.
+}
+$(&quot;#listview&quot;).UifListView({
+    customEdit: true,
+    customAdd: true,
+    localMode: true,
+    add: true,
+    edit: true,
+    displayTemplate: &quot;#display-template&quot;,
+    title:&quot;Abm Local en Lista&quot;,
+    source: url,
+    errorSourceCallBack: errorLoadData
+});
+</code></pre>
+<h4>[sourceData]</h4>
+<p>Type: <code>array</code> </p>
+<p>El array de datos que servirá como origen de datos.</p>
+<h4>[source]</h4>
+<p>Type: <code>string</code> </p>
+<p>La url del origen de datos. El componente hará un GET contra la url especificada.</p>
+<h4>[filter]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Default: <code>true</code></p>
+<p>Indica si se quiere agregar filtro al listado.</p>
+<h4>[focusItem]</h4>
+<p>Type: <code>boolean</code></p>
+<p>Default: <code>true</code></p>
+<p>Indica si se quiere realizar un focus a los items agregados o actualizados</p>
+<h4>[filterColumns]</h4>
+<p>Type: <code>array</code></p>
+<p>Default: <code>[]</code></p>
+<p>Indica si el filtro actua sobre todos los campos del objeto padre o de los enviados en el array,</p>
+<p>Si es llenado, el componente filtrara los datos por el objeto padre</p>
+<pre><code class="language-javascript">[&quot;Nombre&quot;,&quot;Persona.Direccion&quot;]
+</code></pre>
+<h4>[remove]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Indica si se quiere agregar el boton de remover a cada item de la lista</p>
+<h4>[edit]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Indica si se quiere agregar el boton de editar a cada item de la lista</p>
+<h4>[add]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Indica si se quiere agregar el boton de agregar items a la lista</p>
+<h4>[drag]</h4>
+<p>Type: <code>boolean</code> </p>
+<p>Indica si se quiere agregar la funcionalidad de drag a cada item de la lista</p>
+<h4>[title]</h4>
+<p>Type: <code>string</code> </p>
+<p>El título de la lista</p>
+<h4>[height]</h4>
+<p>Type: <code>number</code> </p>
+<p><code>number | percentage</code></p>
+<p>El alto de la lista</p>
+<pre><code class="language-javascript">// 500  o &#39;90%&#39;
+</code></pre>
+<h4>[selectionType]</h4>
+<p>Type: <code>string</code> </p>
+<p><code>single | multiple</code></p>
+<p>Indica si se quiere agregar la posibilidad de seleccionar items.</p>
+<h4>[allowEdit]</h4>
+<p>Type: <code>boolean</code> </p>
+<p><code>true | false</code></p>
+<p>Este parámetro sólo puede ser utilizado en el binding de la lista, estableciendo el mismo como propiedad
+del json que alimenta la misma.
+El mismo permite establecer permisos de edición por fila dentro de un Listview.</p>
+<pre><code class="language-javascript">{ Nombre: &quot;Sergio&quot;, Ciudad: &quot;Buenos Aires&quot;, Pais: &quot;Argentina&quot;, NombreEmpresa: &quot;Sistran&quot;, allowEdit:false , allowDelete: false};
+</code></pre>
+<h4>[allowDelete]</h4>
+<p>Type: <code>boolean</code> </p>
+<p><code>true | false</code></p>
+<p>Este parámetro sólo puede ser utilizado en el binding de la lista, estableciendo el mismo como propiedad
+del json que alimenta la misma.
+El mismo permite establecer permisos de borrado por fila dentro de un Listview.</p>
+<pre><code class="language-javascript">{ Nombre: &quot;Sergio&quot;, Ciudad: &quot;Buenos Aires&quot;, Pais: &quot;Argentina&quot;, NombreEmpresa: &quot;Sistran&quot;, allowEdit:false , allowDelete: false};
+</code></pre>
+<h3>Métodos</h3>
+<h4>refresh()</h4>
+<p>Ejecuta un reload del source</p>
+<pre><code class="language-javascript">
+
+$(&quot;.uif-listview&quot;).UifListView(&quot;refresh&quot;);
+</code></pre>
+<h4>addItem(childs)</h4>
+<p><em>childs</em></p>
+<p>Type: <code>object</code></p>
+<p>Agrega uno o mas elementos a la lista.</p>
+<pre><code class="language-javascript">
+const newItems = {name: &#39;Nuevo registro&#39;};
+
+$(&quot;.uif-listview&quot;).UifListView(&quot;addItem&quot;, newItems);
+</code></pre>
+<h4>editItem(index, data)</h4>
+<p><em>index</em></p>
+<p>Type: <code>number</code></p>
+<p><em>data</em></p>
+<p>Type: <code>object</code></p>
+<p>Actualiza el elemento indicado por el index.</p>
+<pre><code class="language-javascript">
+const newData = { 
+    name: &#39;Edit Item&#39;,
+    age: 34
+    }
+
+$(&quot;.uif-listview&quot;).UifListView(&quot;editItem&quot;, index, newData);
+</code></pre>
+<h4>deleteItem(index [,callback])</h4>
+<p><em>index</em></p>
+<p>Type: <code>number</code></p>
+<p><em>data</em></p>
+<p>Type: <code>function</code></p>
+<p>Remueve el elemento indicado por el index. El callback devuelve el item eliminado</p>
+<pre><code class="language-javascript">
+$(&quot;.uif-listview&quot;).UifListView(&quot;deleteItem&quot;, index);
+</code></pre>
+<h4>getData()</h4>
+<p>Retorna un array con todos los elementos de la lista</p>
+<pre><code class="language-javascript">
+const data = $(&quot;.uif-listview&quot;).UifListView(&quot;getData&quot;);
+</code></pre>
+<h4>clear()</h4>
+<p>Limpia la listview</p>
+<pre><code class="language-javascript">
+ $(&quot;.uif-listview&quot;).UifListView(&quot;clear&quot;);
+</code></pre>
+<h4>clearFilter()</h4>
+<p>Limpia el filtro de la listview</p>
+<pre><code class="language-javascript">
+ $(&quot;.uif-listview&quot;).UifListView(&quot;clearFilter&quot;);
+</code></pre>
+<h4>getSelected()</h4>
+<p>Retorna un array con todos los elementos seleccionados de la lista</p>
+<pre><code class="language-javascript">
+const data = $(&quot;.uif-listview&quot;).UifListView(&quot;getSelected&quot;);
+</code></pre>
+<h4>setSelected()</h4>
+<p><em>index</em></p>
+<p>El índice del ítem de la lista a marcar o desmarcar</p>
+<p>Type: <code>number</code></p>
+<p><em>selected</em></p>
+<p>Marcar o desmarcar como selccionado</p>
+<p>Type: <code>boolean</code></p>
+<p>Marca o desmarca un item de la lista como seleccionado</p>
+<pre><code class="language-javascript">
+const data = $(&quot;.uif-listview&quot;).UifListView(&quot;setSelected&quot;, 2, true);
+</code></pre>
+<h4>setEditing()</h4>
+<p><em>index</em></p>
+<p>El índice del ítem de la lista a marcar o desmarcar</p>
+<p>Type: <code>number</code></p>
+<p><em>editing</em></p>
+<p>Marcar o desmarcar como editado</p>
+<p>Type: <code>boolean</code></p>
+<p>Marca o desmarca un item de la lista como editado</p>
+<pre><code class="language-javascript">
+const data = $(&quot;.uif-listview&quot;).UifListView(&quot;setEditing&quot;, 2, true);
+</code></pre>
+<h4>find(callback)</h4>
+<p><em>callback</em></p>
+<p>Type: <code>function</code></p>
+<p>El metodo find ejecuta la función callback una vez por cada elemento presente el arreglo hasta que encuentre uno en donde  el callback retorne un valor true.
+La función es invocada con tres argumentos:</p>
+<ul>
+<li>El valor de cada elemento</li>
+<li>El indice del elemento</li>
+<li>El objeto Array que está siendo atravesado</li>
+</ul>
+<pre><code class="language-javascript">const findCountry = function(element, index, array){
+    return element.country === &#39;colombia&#39;
+}
+const result = $(&quot;.uif-listview&quot;).UifListView(&quot;find&quot;, findCountry);
+</code></pre>
+<h4>findIndex(callback)</h4>
+<p><em>callback</em></p>
+<p>Type: <code>function</code></p>
+<p>El método findIndex ejecuta la función de callback una vez por cada elemento existente en el arreglo hasta que encuentre uno adonde callback retorna un valor true. 
+La función es invocada con tres argumentos:</p>
+<ul>
+<li>El valor de cada elemento</li>
+<li>El indice del elemento</li>
+<li>El objeto Array que está siendo atravesado</li>
+</ul>
+<pre><code class="language-javascript">const findCountry = function(element, index, array){
+    return element.country === &#39;colombia&#39;
+}
+var index = $(&quot;.uif-listview&quot;).UifListView(&quot;findIndex&quot;, findCountry);
+</code></pre>
+<h2>Eventos</h2>
+<ul>
+<li>rowEdit</li>
+<li>rowAdd</li>
+<li>rowDelete</li>
+<li>itemSelected</li>
+<li>mounted</li>
+<li>draggingStarted</li>
+<li>draggingEnded</li>
+</ul>
+<pre><code class="language-javascript">
+$(&#39;.uif-listview&#39;).on(&#39;rowEdit&#39;, function (event, data, index) {
+    
+})
+
+$(&#39;.uif-listview&#39;).on(&#39;itemSelected&#39;, function (event, item) {
+    
+})
+
+</code></pre>
+<h2>Plantilla</h2>
+<ul>
+<li>Estandar</li>
+<li>Condiciones</li>
+</ul>
+<pre><code class="language-javascript">
+var data = { Id: 2, Nombre:&quot;Andres&quot;, Ciudad: &quot;Bogota&quot;, Pais: &quot;COLOMBIA&quot;, NombreEmpresa:&quot;Sistran&quot;, EmpresaId: 1, StatusTypeService: 2 };
+
+
+&lt;script id=&quot;display-template-estandar&quot; type=&quot;text/template&quot;&gt;
+    &lt;label&gt;Nombre:{{Nombre}}&lt;/label&gt;
+    &lt;div&gt;&lt;label&gt;Pais:&lt;/label&gt;{{Pais}}&lt;/div&gt;
+    &lt;div&gt;&lt;label&gt;Empresa:&lt;/label&gt; {{NombreEmpresa}} &lt;/div&gt;
+&lt;/script&gt;
+
+&lt;script id=&quot;display-template-conditional&quot; type=&quot;text/template&quot;&gt;
+    &lt;label&gt;Nombre:{{Nombre}}&lt;/label&gt;
+    &lt;div&gt;&lt;label&gt;Pais:&lt;/label&gt;{{Pais}}&lt;/div&gt;
+    &lt;div&gt;&lt;label&gt;Empresa:&lt;/label&gt; {{NombreEmpresa}} &lt;/div&gt;
+    &lt;br /&gt;
+    {{#ifCond  StatusTypeService &quot;==&quot; 2 }}
+    &lt;div &gt;&lt;span class=&quot;label label-success&quot;&gt;Creado&lt;/span&gt;&lt;/div&gt;
+    {{else ifCond StatusTypeService &quot;==&quot; 3}}
+    &lt;div&gt; &lt;span class=&quot;label label-warning&quot;&gt;Actualizado&lt;/span&gt;&lt;/div&gt;
+    {{else}}
+    {{/ifCond}}
+&lt;/script&gt;
+</code></pre>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\tab.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Tab</h1>
+<p><em>Permite organizar contenidos mediante tabs</em></p>
+<pre><code class="language-html">&lt;!-- definir tabs --&gt;
+&lt;ul class=&quot;uif-tab&quot;&gt;
+    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#tabA&quot;&gt;Tab A&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;#tabB&quot;&gt;Tab B&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;#tabC&quot;&gt;Tab C&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- contenido de los tabs --&gt;
+&lt;div class=&quot;tab-content&quot;&gt;
+            &lt;div  id=&quot;tabA&quot; class=&quot;tab-pane active&quot;&gt;
+                
+            &lt;/div&gt;
+            &lt;div id=&quot;tabB&quot; class=&quot;tab-pane&quot;&gt;
+                
+            &lt;/div&gt;
+            &lt;div id=&quot;tabC&quot; class=&quot;tab-pane&quot;&gt;
+                
+            &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>change</li>
+</ul>
+<pre><code class="language-javascript">$(&#39;#tabs&#39;).on(&#39;change&#39;, function () {
+    //
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\inputsearch.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Inputsearch</h1>
+<p><em>El componente permite mostrar un input con un boton para hacer busquedas. El boton dispara un evento.</em></p>
+<pre><code class="language-html">&lt;input class=&quot;uif-input-search&quot; type=&quot;text&quot;&gt;&lt;/input&gt;
+</code></pre>
+<h3>Métodos</h3>
+<h4>disabled</h4>
+<p><em>option</em></p>
+<p>Type: <code>boolean</code></p>
+<p>Establece la propiedad <code>disabled</code> del componente</p>
+<pre><code class="language-javascript">$(&#39;#input&#39;).UifInputSearch(&#39;disabled&#39;, true);
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>search</li>
+</ul>
+<pre><code class="language-javascript">$(&#39;#input&#39;).on(&quot;search&quot;, function (event, value) {
+    console.log(&quot;El valor dentro del control es: &quot; + value);
+});
+</code></pre>
+
+  </main>
+</body>
+</html>

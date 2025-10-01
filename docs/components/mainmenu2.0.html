@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\mainmenu2.0.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Menu</h1>
+<p><em>Inicializa el componente Menu</em></p>
+<pre><code class="language-javascript">//ejemplo de inicialización del componente
+const dropdown = uif2.menu({
+    container: &#39;#elementContainter&#39;, // Elemento que contentra el componetne
+    sourceData: data, // Data a mostrar
+    pathBase: rootPath, // url base del sitio
+    searchCallBack: function (search, menu, parent) {
+        console.log(&#39;Console CallBack Menu&#39;)
+    },
+    //Optional
+    localMode: true
+    addFavorite: function (selectedItem) {
+        // Uso solamente en localmode: false
+        console.log(&#39;add item&#39;)
+    },
+    removeFavorite: function (selectedItem) {
+        // Uso solamente en localmode: false
+        console.log(&#39;remove item&#39;)
+    },
+    styleOptions: {
+      primaryColor: &#39;#04549c&#39;,
+      secondColor: &#39;#4d83cb&#39;,
+      searchColor: &#39;#d0e1ec&#39;,
+      titleColor: &#39;#04549c&#39;,
+      searchTitleColor: &#39;#04549c&#39;,
+      labelColorLeft: &#39;white&#39;,
+      labelColorRight: &#39;#d0e1ec&#39;,
+      labelColorSearch: &#39;#414a4c&#39;,
+    }
+});
+</code></pre>
+<h3>Parámetros de inicialización</h3>
+<h4>container</h4>
+<p>Type: <code>string</code> </p>
+<p>El id del elemento que contendra el componente</p>
+<pre><code class="language-javascript">//Ejemplo 
+const container = &#39;#myElement&#39;
+</code></pre>
+<h4>sourceData</h4>
+<p>Type: <code>array</code> </p>
+<p>Data que se desea visualizar del menu</p>
+<h4>pathBase</h4>
+<p>Type: <code>string</code> </p>
+<p>Url base del sitio</p>
+<pre><code class="language-javascript">//Ejemplo 
+const rootPath = &#39;/SISE3G/&#39;
+</code></pre>
+<h3>searchCallBack</h3>
+<p>Type: <code>function</code></p>
+<p>Se ejecuta cuando un item del menu oprime opcion search</p>
+<h3>styleOptions</h3>
+<p>Type: <code>object</code></p>
+<p>Establece la configuracion de colores por defecto del menu.</p>
+<pre><code class="language-javascript">//ejemplo de inicialización del componente
+{
+    primaryColor: &#39;#04549c&#39;, //Color del menu que se encuentra en la parte derecha
+    secondColor: &#39;#4d83cb&#39;, //Color del menu cuando se abre un item del menu
+    searchColor: &#39;#d0e1ec&#39;, //Color del menu cuando los filtros estan activos
+    titleColor: &#39;#04549c&#39;, //Color de los titulos de los submenus.
+    searchTitleColor: &#39;#04549c&#39;, //Color de los titulos cuando el filtro esta activo.
+    labelColorLeft: &#39;white&#39;, //Color de las fuentes de los menus padres de la parte izquierda
+    labelColorRight: &#39;#d0e1ec&#39;, //Color de las fuentes de los subitems
+    labelColorSearch: &#39;#414a4c&#39;, //Color de las fuentes cuando el filtro esta activo
+}
+</code></pre>
+<h3>localMode</h3>
+<p>Type: <code>boolean</code>
+Default: <code>true</code></p>
+<p>Establece si los favoritos se guardaran en el localstorage o en lugar externo</p>
+<h3>addFavorite</h3>
+<p>Type: <code>function</code>
+Default: <code>undefined</code></p>
+<p>Esta funcion se ejecutara si el parametro <code>localMode</code> esta en <code>false</code> cuando se agrege un favorito.</p>
+<pre><code class="language-javascript">function (selected) {
+    console.log(&#39;addFavorite&#39;, selected)
+    $.ajax({
+        url: rootPath + &#39;Layout/AddFavoriteModule&#39;,
+        data: { module: selected },
+        type: &#39;POST&#39;,
+        success: function (data) {
+
+        }
+    })
+}
+</code></pre>
+<h3>removeFavorite</h3>
+<p>Type: <code>function</code>
+Default: <code>undefined</code></p>
+<p>Esta funcion se ejecutara si el parametro <code>localMode</code> esta en <code>false</code> cuando se agrege un elimine un favorito.</p>
+<pre><code class="language-javascript">    //Ejemplo de la funcion.
+function (selected) {
+    console.log(&#39;removeFavorite&#39;, selected)
+    $.ajax({
+        url: rootPath + &#39;Layout/RemoveFavoriteModule&#39;,
+        data: { module: selected },
+        type: &#39;POST&#39;,
+        success: function (data) {
+
+        }
+    })
+}
+</code></pre>
+
+  </main>
+</body>
+</html>

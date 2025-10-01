@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>components\select.md</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+  <style> body{margin:2rem; max-width:1100px;} pre code{white-space:pre-wrap;} </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Select</h1>
+<p><em>Crea un select con un source y eventos</em></p>
+<pre><code class="language-html">&lt;select class=&quot;uif-select&quot; id=&quot;select1&quot;&gt;&lt;/select&gt;
+</code></pre>
+<pre><code class="language-javascript">$(&quot;#select1&quot;).UifSelect({ 
+  sourceData: data, 
+  id: &quot;Id&quot;, 
+  name: &quot;Empresa&quot;, 
+  native:false, 
+  filter:true,
+  enable:true,
+  //displayTemplate: &quot;mi nueva empresa es {{Empresa}}&quot;
+  //selectedId:15 --Asigna el value del select, despues de que carga.
+  //size: 5 --Asigna las opciones a mostrar antes de realizar scroll, solo para select native:false
+});
+</code></pre>
+<h3>Parámetros de inicializacion</h3>
+<h4>[sourceData]</h4>
+<p>Type: <code>array</code></p>
+<p>El array con los datos que serviran de source para el select.</p>
+<h4>[displayTemplate]</h4>
+<p>Type: <code>string</code></p>
+<p>Permite crear un template de visualizacion de los datos.</p>
+<h4>[id]</h4>
+<p>Type: <code>string</code></p>
+<p>El campo en el origen de datos que sera el ID.</p>
+<h4>[name]</h4>
+<p>Type: <code>string</code></p>
+<p>El campo en el origen de datos que será el name o el visible.</p>
+<h4>[displayTemplate]</h4>
+<p>Type: <code>string</code></p>
+<p>Este parametro permite personalizar el valor a mostrar, si este valor es llenado omitira el parametro [name]</p>
+<h4>[selectedId]</h4>
+<p>Type: <code>object</code></p>
+<p>Asigna el value del componente despues de que este haya cargado.</p>
+<h4>[filter]</h4>
+<p>Type: <code>boolean</code></p>
+<p>Indica si se usará el filtro.</p>
+<h4>[native]</h4>
+<p>Type: <code>boolean</code></p>
+<p>Indica si se usará el elemento estandar de HTML.</p>
+<h4>[enable]</h4>
+<p>Type: <code>boolean</code></p>
+<p>Indica si el componente esta habilitado o deshabilitado.</p>
+<h4>[size]</h4>
+<p>Type: <code>int</code></p>
+<p>Default: <code>15</code></p>
+<p>Indica cantidad de registros a mostrar cuando los filtros estan activos.</p>
+<pre><code class="language-javascript">
+//Cambio global.
+$.fn.UifSelect.size = 15
+</code></pre>
+<h4>[errorSourceCallBack]</h4>
+<p>Type: <code>function</code></p>
+<p>Default: <code>null</code></p>
+<p>Ejecuta la funcion si la peticion al servicio arroja error.</p>
+<pre><code class="language-javascript">function callBackError (status, error) {
+  //do something.
+}
+$(&quot;#select1&quot;).UifSelect({ 
+  source: ul, 
+  id: &quot;Id&quot;, 
+  name: &quot;Empresa&quot;, 
+  native:false, 
+  filter:true,
+  enable:true,
+  errorSourceCallBack: callBackError
+});
+</code></pre>
+<h3>Métodos</h3>
+<h4>disabled (value)</h4>
+<p><em>value</em></p>
+<p>Type: <code>boolean</code></p>
+<pre><code class="language-javascript">
+$(&quot;#select&quot;).UifSelect(&quot;disabled&quot;, true);
+</code></pre>
+<h4>setSelected(value)</h4>
+<p><em>value</em></p>
+<p>Type: <code>string</code></p>
+<p>Selecciona un elemento buscando en el array de IDs que se estableció en la inicializacion.</p>
+<pre><code class="language-javascript">
+$(&quot;#select&quot;).UifSelect(&quot;setSelected&quot;, &quot;23365&quot;);
+</code></pre>
+<h4>getSelected()</h4>
+<p>Retorna el ID del elemento seleccionado por el usuario.</p>
+<pre><code class="language-javascript">
+const selectedID = $(&quot;#select&quot;).UifSelect(&quot;getSelected&quot;);
+</code></pre>
+<h4>getSelectedText()</h4>
+<p>Retorna el name del elemento seleccionado por el usuario.</p>
+<pre><code class="language-javascript">
+const selectedName = $(&quot;#select&quot;).UifSelect(&quot;getSelectedText&quot;);
+</code></pre>
+<h4>getSelectedSource()</h4>
+<p>Retorna un objeto con el elemento seleccionado por el usuario.</p>
+<pre><code class="language-javascript">
+const selected = $(&quot;#select&quot;).UifSelect(&quot;getSelectedSource&quot;);
+</code></pre>
+<h4>getSource()</h4>
+<p>Retorna el origen de datos que tiene el select.</p>
+<pre><code class="language-javascript">
+const source = $(&quot;#select&quot;).UifSelect(&quot;getSource&quot;);
+</code></pre>
+<h4>setFocus()</h4>
+<p>Hace focus en el Select indicado</p>
+<pre><code class="language-javascript">
+$(&quot;#select&quot;).UifSelect(&quot;setFocus&quot;);
+</code></pre>
+<h3>Eventos</h3>
+<ul>
+<li>binded</li>
+<li>itemSelected</li>
+</ul>
+<pre><code class="language-javascript">//Este evento se ejecuta cuando el select ha cargado correctamente.
+$(&#39;#select1&#39;).on(&#39;binded&#39;, function (event, data, index) {
+    
+})
+//Este evento se ejecuta cuando se selecciona un elemento
+$(&#39;#select1&#39;).on(&#39;itemSelected&#39;, function (event, item) {
+    
+})
+
+</code></pre>
+
+  </main>
+</body>
+</html>
